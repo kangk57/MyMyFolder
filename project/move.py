@@ -2,7 +2,7 @@ from pico2d import *
 
 
 class World:
-    def __init__(self):  # 생성자
+    def __init__(self):
         self.image = load_image('world1.png')
 
     def draw(self):
@@ -18,6 +18,7 @@ class Mario:
     def update(self):
         self.frame = (self.frame + 1) % 4
         self.x += dir*5
+        self.y += height*5
 
     def draw(self):
         self.image.clip_draw(210, 172, 14, 16, self.x, self.y)
@@ -30,6 +31,7 @@ class Mario:
 def handle_events():
     global running
     global dir
+    global height
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -41,11 +43,15 @@ def handle_events():
                 dir += 1
             elif event.key == SDLK_a:
                 dir -= 1
+            elif event.type == SDLK_w:
+                height += 1
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_d:
                 dir -= 1
             elif event.key == SDLK_a:
                 dir += 1
+            elif event.type == SDLK_s:
+                height -= 1
 
 
 open_canvas(800, 224)
@@ -55,6 +61,7 @@ mario = Mario()
 
 running = True
 dir = 0
+height = 0
 
 while running:
     handle_events()
