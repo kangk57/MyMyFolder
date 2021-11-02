@@ -43,15 +43,19 @@ def handle_events():
                 dir += 1
             elif event.key == SDLK_a:
                 dir -= 1
-            elif event.type == SDLK_w:
+            elif event.key == SDLK_w:
                 height += 1
+            elif event.key == SDLK_s:
+                height -= 1
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_d:
                 dir -= 1
             elif event.key == SDLK_a:
                 dir += 1
-            elif event.type == SDLK_s:
+            elif event.key == SDLK_w:
                 height -= 1
+            elif event.key == SDLK_s:
+                height += 1
 
 
 open_canvas(800, 224)
